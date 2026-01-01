@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details - From Machine Learning to Computer Vision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            background: #00e5ff;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text span {
+            color: #00e5ff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #00e5ff;
+        }
+
+        nav a.active {
+            color: #00e5ff;
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #00e5ff;
+            left: 0;
+            bottom: 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #00e5ff;
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .facebook-link {
+            background: #1877f2;
+            padding: 8px 16px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .facebook-link:hover {
+            background: #0d65d9;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Course Hero Section */
+        .hero {
+            padding: 100px 0;
+            background: linear-gradient(rgba(26, 35, 126, 0.9), rgba(40, 53, 147, 0.9)), url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero h1 span {
+            color: #00e5ff;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .course-hero {
+            padding: 80px 0 60px;
+            background: linear-gradient(rgba(26, 35, 126, 0.9), rgba(40, 53, 147, 0.9)), url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        .course-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .course-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .course-tagline {
+            font-size: 1.8rem;
+            color: #00e5ff;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* Main Course Content */
+        .course-content {
+            padding: 60px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #1a237e;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: #00e5ff;
+            bottom: 0;
+            left: 0;
+        }
+
+        .course-description {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: linear-gradient(145deg, #f0f4ff 0%, #e8edff 100%);
+            border-left: 5px solid #00e5ff;
+            padding: 25px;
+            margin-bottom: 40px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Course Roadmap */
+        .roadmap-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .roadmap-phase {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid #1a237e;
+            transition: transform 0.3s ease;
+        }
+
+        .roadmap-phase:hover {
+            transform: translateY(-5px);
+        }
+
+        .phase-title {
+            font-size: 1.4rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .phase-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .phase-item i {
+            color: #00e5ff;
+            margin-top: 3px;
+        }
+
+        /* Course Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .detail-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e8e8e8;
+        }
+
+        .detail-card h3 {
+            font-size: 1.3rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-card h3 i {
+            color: #00e5ff;
+        }
+
+        .detail-item {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .detail-label {
+            font-weight: 500;
+            color: #666;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .highlight-value {
+            color: #00c853;
+            font-weight: 700;
+        }
+
+        /* Prerequisites & Benefits */
+        .prerequisites-section, .benefits-section {
+            margin-bottom: 50px;
+        }
+
+        .prerequisites-list, .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .prereq-item, .benefit-item {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .prereq-item i, .benefit-item i {
+            color: #00e5ff;
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+
+        /* Demo Class CTA */
+        .demo-cta {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            margin: 60px 0;
+            border-radius: 15px;
+        }
+
+        .demo-cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .demo-cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .demo-details {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .demo-details p {
+            margin-bottom: 5px;
+            line-height: 1.4; 
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(to right, #00e5ff, #1a237e);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 229, 255, 0.4);
+        }
+
+        .btn-demo {
+            background: linear-gradient(to right, #00e5ff, #00c853);
+            font-size: 1.1rem;
+            padding: 18px 40px;
+            margin: 0 10px 20px;
+        }
+
+        .btn-enroll {
+            background: linear-gradient(to right, #ff4081, #f50057);
+            font-size: 1.1rem;
+            padding: 18px 40px;
+            margin: 0 10px 20px;
+        }
+
+        /* Enroll Now Section */
+        .enroll-section {
+            text-align: center;
+            padding: 60px 0;
+            background-color: #f5f7ff;
+            border-radius: 15px;
+            margin-top: 60px;
+        }
+
+        .enroll-section h2 {
+            font-size: 2.2rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+
+        .enroll-section p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #555;
+        }
+
+        .enroll-methods {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .enroll-method {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 280px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .enroll-method:hover {
+            transform: translateY(-5px);
+        }
+
+        .enroll-method i {
+            font-size: 2.5rem;
+            color: #1a237e;
+            margin-bottom: 15px;
+        }
+
+        .enroll-method h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #1a237e;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a237e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: #00e5ff;
+        }
+
+        .footer-about {
+            opacity: 0.9;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: #00e5ff;
+            left: 0;
+            bottom: 0;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-info i {
+            color: #00e5ff;
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        .contact-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #00e5ff;
+        }
+
+        .social-footer {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Back to Home Link */
+        .back-home {
+            margin-bottom: 30px;
+        }
+
+        .back-home a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-home a:hover {
+            color: #00e5ff;
+            gap: 12px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .course-hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .roadmap-phase {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: #1a237e;
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            nav li {
+                width: 100%;
+            }
+            
+            nav a {
+                display: block;
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .facebook-link {
+                justify-content: center;
+                margin-top: 15px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .demo-cta h2, .enroll-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .course-hero h1 {
+                font-size: 1.9rem;
+            }
+            
+            .course-tagline {
+                font-size: 1.4rem;
+            }
+            
+            .btn-demo, .btn-enroll {
+                display: block;
+                width: 100%;
+                margin: 10px 0;
+            }
+            
+            .enroll-method {
+                width: 100%;
+            }
+        }
+
+        .btn.btn-demo {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            width: fit-content; /* or a fixed width like 250px */
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            height: 40px; /* Adjust as needed */
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <!-- <div class="logo">
+                <div class="logo-icon">AI</div>
+                <div class="logo-text">Model<span>Craft</span></div>
+            </div> -->
+
+            <div class="logo">
+                <img src="logo.png" alt="ModelCraft Logo" class="logo-image">
+            </div>
+            
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#course" class="active">Course</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="https://www.facebook.com/modelcraftacademy/" target="_blank" class="facebook-link"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Course Hero Section -->
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="back-home">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Homepage</a>
+            </div>
+
+            <h1>Learn AI by understanding <span>how and why</span> models work!</h1>
+            <p>Master artificial intelligence through our comprehensive course designed to give you deep insights into AI models, their mechanisms, and real-world applications.</p>
+        </div>
+    </section>
+    
+    <!-- <section class="course-hero" id="course">
+        <div class="container">
+            <div class="back-home">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Homepage</a>
+            </div>
+            
+            <h1>From Machine Learning to Computer Vision</h1>
+            <div class="course-tagline">Learn AI by understanding how and why models work!</div>
+            <p>Your comprehensive journey into Machine Learning, Deep Learning, and Computer Vision</p>
+        </div>
+    </section> -->
+
+    <!-- Main Course Content -->
+    <main class="course-content">
+        <div class="container">
+            <!-- Course Description -->
+            <section class="course-description-section">
+                <h2 class="section-title">Course Overview</h2>
+                <p class="course-description">
+                    This course is perfect for beginners who want to start their journey into Machine Learning, Deep Learning, and Computer Vision with confidence. You don't need to be an expert; we start from the basics and guide you step by step toward advanced ideas in a simple and friendly way.
+                </p>
+                
+                <div class="highlight-box">
+                    <p>You will discover how computers learn from data and how AI can understand images and videos. With hands-on projects, real-world examples, and practical exercises, you will see your skills grow with every lesson. By the end of this course, you will be able to build your own models, explore and conduct research, and deploy real AI solutions. This course is your first strong step toward a future in AI.</p>
+                </div>
+            </section>
+
+            <!-- Course Roadmap -->
+            <section class="roadmap-section">
+                <h2 class="section-title">Course Roadmap</h2>
+                <div class="roadmap-container">
+                    <div class="roadmap-phase">
+                        <h3 class="phase-title">Phase 1: Programming & Data Foundations</h3>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Python Fundamentals (Free Crash Course)</span>
+                        </div>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Understanding Data & Datasets</span>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap-phase">
+                        <h3 class="phase-title">Phase 2: Machine Learning Essentials</h3>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Introduction to Machine Learning</span>
+                        </div>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Core Machine Learning Algorithms</span>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap-phase">
+                        <h3 class="phase-title">Phase 3: Deep Learning Foundations</h3>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Introduction to Deep Learning</span>
+                        </div>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Convolutional Neural Networks (CNNs)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="roadmap-container">
+                    <div class="roadmap-phase">
+                        <h3 class="phase-title">Phase 4: Computer Vision in Practice</h3>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Image Classification</span>
+                        </div>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Object Detection</span>
+                        </div>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Transfer Learning & Fine-Tuning</span>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap-phase">
+                        <h3 class="phase-title">Phase 5: Learning Paradigms in AI</h3>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Supervised Learning</span>
+                        </div>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Semi-Supervised Learning</span>
+                        </div>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Self-Supervised Learning</span>
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap-phase">
+                        <h3 class="phase-title">Phase 6: Deployment & Research</h3>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Capstone Project</span>
+                        </div>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Model Deployment</span>
+                        </div>
+                        <div class="phase-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Research Guidelines</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Course Details -->
+            <section class="details-section">
+                <h2 class="section-title">Course Details</h2>
+                <div class="details-grid">
+                    <div class="detail-card">
+                        <h3><i class="far fa-calendar-alt"></i> Schedule & Timing</h3>
+                        <div class="detail-item">
+                            <span class="detail-label">Registration Deadline</span>
+                            <span class="detail-value">8th January 2026 (Thursday)</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Course Start Date</span>
+                            <span class="detail-value">9th January 2026 (Friday)</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Duration</span>
+                            <span class="detail-value">4 months</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Class Schedule</span>
+                            <span class="detail-value">Every Friday & Saturday</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Time</span>
+                            <span class="detail-value">08:00 PM – 09:00 PM</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Class Type</span>
+                            <span class="detail-value">Live Interactive (Bengali)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <h3><i class="fas fa-money-bill-wave"></i> Fee Structure</h3>
+                        <div class="detail-item">
+                            <span class="detail-label">Course Fee</span>
+                            <span class="detail-value highlight-value">1,500 BDT per month</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Payment Method</span>
+                            <span class="detail-value">Monthly</span>
+                        </div>
+                        <!-- <div class="detail-item">
+                            <span class="detail-label">Total Course Cost</span>
+                            <span class="detail-value">4,800 BDT (4 months)</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Early Bird Discount</span>
+                            <span class="detail-value">Available until Dec 25</span>
+                        </div> -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Prerequisites -->
+            <section class="prerequisites-section">
+                <h2 class="section-title">Prerequisites</h2>
+                <div class="prerequisites-list">
+                    <div class="prereq-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Background in Computer Science, Engineering, or a related field.</span>
+                    </div>
+                    <div class="prereq-item">
+                        <i class="fas fa-code"></i>
+                        <span>Basic programming knowledge.</span>
+                    </div>
+                    <div class="prereq-item">
+                        <i class="fas fa-brain"></i>
+                        <span>Interest in AI, Machine Learning, and Deep Learning research.</span>
+                    </div>
+                    <div class="prereq-item">
+                        <i class="fas fa-calculator"></i>
+                        <span>Understanding of fundamental mathematics (algebra, probability, statistics).</span>
+                    </div>
+                    <div class="prereq-item">
+                        <i class="fas fa-rocket"></i>
+                        <span>Willingness to learn AI and Computer Vision concepts.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Demo Class CTA -->
+            <section class="demo-cta">
+                <div class="container">
+                    <h2>Free Demo Class</h2>
+                    <p>Experience our teaching style before enrolling in the full course</p>
+                    
+                    <div class="demo-details">
+                        <h3>Class Details</h3>
+                        <p><strong>Date:</strong> 6th January 2026 (Tuesday)</p>
+                        <p><strong>Time:</strong> 8:30 PM – 9:30 PM</p>
+                        <p><strong>Mode:</strong> Online Live Session</p>
+                    </div>
+                    
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfB4rgou0wwJufeMcv7HfmVmPCO5XlPrt6GN_QV13p5OZd9ag/viewform?usp=header" target="_blank" class="btn btn-demo">
+                        <i class="fas fa-user-plus"></i> Register for Demo Class
+                    </a>
+                    <p>Register now to secure your spot!</p>
+                </div>
+            </section>
+
+            <!-- Key Benefits -->
+            <section class="benefits-section">
+                <h2 class="section-title">Key Benefits</h2>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <i class="fas fa-video"></i>
+                        <span>No pre-recorded videos, all sessions are live and interactive.</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Dedicated WhatsApp support group for Q&A and discussions.</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-book"></i>
+                        <span>Study materials and slides provided for every topic.</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Assignments after each module to build real understanding.</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Hands-on projects with mentor feedback.</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-search"></i>
+                        <span>Research and publication guidance for advanced learners.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Enroll Now Section -->
+            <section class="enroll-section">
+                <h2>Ready to Start Your AI Journey?</h2>
+                <p>Ready to join the course? Enroll by contacting us directly.</p>
+                
+                <div class="enroll-methods">
+                    <div class="enroll-method">
+                        <i class="fab fa-facebook-messenger"></i>
+                        <h3>Via Facebook</h3>
+                        <p>Message us on Facebook with your name and interest in the course.</p>
+                        <a href="https://m.me/modelcraftacademy" target="_blank" class="btn" style="margin-top: 15px;">Message Now</a>
+                    </div>
+                    
+                    <div class="enroll-method">
+                        <i class="fab fa-whatsapp"></i>
+                        <h3>Via WhatsApp</h3>
+                        <p>Chat with us on WhatsApp for quick registration and queries.</p>
+                        <a href="https://wa.me/8801876380953" target="_blank" class="btn" style="margin-top: 15px;">Chat on WhatsApp</a>
+                    </div>
+                </div>
+                
+                <p>We'll guide you through the complete registration process after you contact us.</p>
+                <a href="#course" class="btn btn-enroll">
+                    <i class="fas fa-rocket"></i> Enroll Now
+                </a>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <!-- <div class="footer-logo">Model<span>Craft</span></div> -->
+                     <div class="footer-logo">
+                        <img src="logo.png" alt="ModelCraft Logo" class="logo-image">
+                    </div>
+                    <p>We provide comprehensive AI education focusing on understanding the underlying principles of artificial intelligence models. Our mission is to create the next generation of AI practitioners who truly understand how and why AI works.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@learnai.com" class="contact-link">modelcraftacademy@gmail.com</a>
+                        </li>
+                        
+                        <li>
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/8801876380953" target="_blank" class="contact-link">WhatsApp: +8801876380953</a>
+                        </li>
+                        <li>
+                            <i class="fab fa-facebook"></i>
+                            <a href="https://www.facebook.com/modelcraftacademy/" target="_blank" class="contact-link">Facebook: @modelcraftacademy</a>
+                        </li>
+                    </ul>
+                    
+    
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Model Craft Academy | Crafted with the learner in mind</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Enroll button functionality
+        // const enrollButtons = document.querySelectorAll('.btn-enroll, .btn-demo');
+        // enrollButtons.forEach(button => {
+        //     button.addEventListener('click', function(e) {
+        //         if(this.classList.contains('btn-demo')) {
+        //             // In real implementation, this would redirect to a registration form
+        //             // For demo, we'll show a confirmation
+        //             e.preventDefault();
+        //             alert("Thank you for your interest! In a real implementation, this would redirect to a demo class registration form.");
+        //         } else if(this.classList.contains('btn-enroll')) {
+        //             e.preventDefault();
+        //             window.scrollTo({
+        //                 top: document.querySelector('.enroll-section').offsetTop - 100,
+        //                 behavior: 'smooth'
+        //             });
+        //         }
+        //     });
+        // });
+        
+        // Add animation to roadmap phases when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe roadmap phases for animation
+        document.querySelectorAll('.roadmap-phase').forEach(phase => {
+            phase.style.opacity = '0';
+            phase.style.transform = 'translateY(20px)';
+            phase.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(phase);
+        });
+        
+        // Highlight active nav link based on scroll position
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+            
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 150;
+                const sectionId = section.getAttribute('id');
+                
+                if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelector(`nav a[href="#${sectionId}"]`)?.classList.add('active');
+                } else {
+                    document.querySelector(`nav a[href="#${sectionId}"]`)?.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
